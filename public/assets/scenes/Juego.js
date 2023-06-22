@@ -4,17 +4,7 @@ export default class Juego extends Phaser.Scene {
   constructor() {
     super("juego");
   }
-
-  preload() {
-    this.load.tilemapTiledJSON("map", "./public/tilemaps/nivel1.json");
-    this.load.image("tilesFondo", "./public/assets/images/sky.png");
-    this.load.image("tilesPlataforma", "./public/assets/images/platform.png");
-    this.load.image("tilesPlataformaN", "./public/assets/images/platformN.png");
-    this.load.image("ball", "./public/assets/images/pelota.png");
-    this.load.image("door", "./public/assets/images/agujero.png");
-    this.load.image("star", "./public/assets/images/star.png");
-  }
-
+  
   create() {
     const map = this.make.tilemap({ key: "map" });
 

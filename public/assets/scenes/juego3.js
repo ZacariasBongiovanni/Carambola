@@ -3,16 +3,6 @@ export default class juego3 extends Phaser.Scene {
     super("juego3");
   }
 
-  preload() {
-    this.load.tilemapTiledJSON("map3", "./public/tilemaps/nivel3.json");
-    this.load.image("tilesFondo", "./public/assets/images/sky.png");
-    this.load.image("tilesPlataforma", "./public/assets/images/platform.png");
-    this.load.image("tilesPlataformaN", "./public/assets/images/platformN.png");
-    this.load.image("ball", "./public/assets/images/pelota.png");
-    this.load.image("door", "./public/assets/images/agujero.png");
-    this.load.image("star", "./public/assets/images/star.png");
-  }
-
   create() {
     const map = this.make.tilemap({ key: "map3" });
 

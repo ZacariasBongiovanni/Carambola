@@ -33,7 +33,9 @@ export default class Preload extends Phaser.Scene {
         this.load.image("M5b", "./public/assets/images/M5b.png");
         this.load.image("M6b", "./public/assets/images/M6b.png");
         this.load.image("ganar", "./public/assets/images/victoria.png");
-        this.load.image("barra","./public/assets/images/Barra.png")
+        this.load.image("barra","./public/assets/images/Barra.png");
+        this.load.image("teclado","./public/assets/images/teclado.png");
+        this.load.image("opcion","./public/assets/images/opcion.png");
         this.load.spritesheet("Cañon", "./public/assets/images/Cañon3.png",{
             frameWidth: 40,
             frameHeight: 61,
@@ -41,7 +43,7 @@ export default class Preload extends Phaser.Scene {
     } 
 
     create(){
-        this.scene.start("juego")
+        this.scene.start("Inicio")
     }
 }
    

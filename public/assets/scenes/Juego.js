@@ -76,6 +76,9 @@ export default class Juego extends Phaser.Scene {
 
     this.add.image(400, 20, "barra").setScale(1);
     this.add.image(760, 30, "Opciones").setScale(0.8).setInteractive()
+    this.add.image(400, 320, "opcion").setScale(0.8).setInteractive()
+    
+    this
     this.score = 4;
     this.scoreText = this.add.text(20, 20, "Tiros Disponibles: " + this.score, {
       fontSize: "20px",

@@ -7,6 +7,7 @@ import Mapas from "./public/assets/scenes/Mapas.js";
 import Preload from "./public/assets/scenes/Preloard.js";
 
 
+
 // Create a new Phaser config object
 const config = {
   type: Phaser.AUTO,

@@ -69,18 +69,6 @@
          "objects":[
                 {
                  "height":0,
-                 "id":8,
-                 "name":"pelota",
-                 "point":true,
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":550.224974200207,
-                 "y":284.62951496388
-                }, 
-                {
-                 "height":0,
                  "id":16,
                  "name":"salida",
                  "point":true,
@@ -88,8 +76,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":243.333333333333,
-                 "y":132.666666666667
+                 "x":136.666666666666,
+                 "y":550
                 }, 
                 {
                  "height":0,
@@ -137,7 +125,7 @@
  "nextobjectid":23,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.8.5",
+ "tiledversion":"1.10.1",
  "tileheight":32,
  "tilesets":[
         {
@@ -292,6 +280,6 @@
         }],
  "tilewidth":32,
  "type":"map",
- "version":"1.8",
+ "version":"1.10",
  "width":25
 }

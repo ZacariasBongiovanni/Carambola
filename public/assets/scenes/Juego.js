@@ -161,12 +161,12 @@ export default class Juego extends Phaser.Scene {
     } 
 
 
-    if (this.cursors.left.isDown){
+    if (this.cursors.up.isDown){
       this.jugador.anims.play("left", true);
       this.jugador.rotation--;
       
     }
-    else if (this.cursors.right.isDown){
+    else if (this.cursors.down.isDown){
       this.jugador.anims.play("right", true);
       this.jugador.rotation++;
 

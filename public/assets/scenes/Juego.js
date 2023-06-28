@@ -75,9 +75,12 @@ export default class Juego extends Phaser.Scene {
     });
 
     this.add.image(400, 20, "barra").setScale(1);
-    this.add.image(760, 30, "Opciones").setScale(0.8).setInteractive()
-    this.score = 4;
-    this.scoreText = this.add.text(20, 20, "Tiros Disponibles: " + this.score, {
+   /*  this.add.image(760, 30, "Opciones").setScale(0.8).setInteractive() */
+    /* this.add.image(400, 320, "opcion").setScale(0.8).setInteractive() */
+    
+   
+    this.score = 2;
+    this.scoreText = this.add.text(20, 20, "Tiros Disponibles: " + this.score , {
       fontSize: "20px",
       fontStyle: "bold",
       fill: "#000000",
@@ -153,7 +156,6 @@ export default class Juego extends Phaser.Scene {
   update(){
     
     if (this.input.keyboard.checkDown(this.cursors.space,250)){
-      this.jugador.setVelocity(0,0);
       this.jugador.anims.play("space", true);
       this.fire(this.jugador);
     } 
@@ -173,7 +175,7 @@ export default class Juego extends Phaser.Scene {
   } 
 
   win() {
-    this.scene.start("juego3");
+    this.scene.start("Ganar");
   }
 
   juntarestrellas(pelota, estrella) {
@@ -191,8 +193,8 @@ export default class Juego extends Phaser.Scene {
       pelota.setBounce(1);
       pelota.setScale(0.1);
       pelota.setCircle(150, -15, -25)
-      pelota.body.velocity.y = 150;
-      pelota.body.velocity.x = -150;
+      pelota.body.velocity.y =  200;
+      pelota.body.velocity.x = -200;
       
     }
   }
@@ -204,6 +206,5 @@ export default class Juego extends Phaser.Scene {
       /* this.gameOver = true; */
     }
   }
-
-
+  
 }

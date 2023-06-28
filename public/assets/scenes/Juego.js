@@ -199,12 +199,12 @@ export default class Juego extends Phaser.Scene {
     }
   }
 
-  oneSecond() {
-    this.timer++;
-    this.timerText.setText("Tiempo " + this.timer);
-    if (this.timer <= 0) {
-      /* this.gameOver = true; */
-    }
-  }
+  // oneSecond() {
+  //   this.timer++;
+  //   this.timerText.setText("Tiempo " + this.timer);
+  //   if (this.timer <= 0) {
+  //     /* this.gameOver = true; */
+  //   }
+  // }
   
 }

@@ -1,7 +1,8 @@
-# Phaser 3 Template
+# Carambola
 
 Descripción del juego
 
+El juego consiste en que el jugador podrá controlar un cañón y con el dispara una pelota que deberá hacer que entre por un agujero para poder seguir avanzando hasta terminar el juego.
 
 Link GDD
 

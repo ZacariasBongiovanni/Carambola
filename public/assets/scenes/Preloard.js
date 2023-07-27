@@ -40,8 +40,8 @@ export default class Preload extends Phaser.Scene {
         this.load.image("sky","./public/assets/images/sky.png");
 
         this.load.spritesheet("Cañon", "./public/assets/images/Cañon3.png",{
-            frameWidth: 40,
-            frameHeight: 61,
+            frameWidth: 61,
+            frameHeight: 40,
           });
     } 
 

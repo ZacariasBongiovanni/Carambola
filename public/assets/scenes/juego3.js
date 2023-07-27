@@ -130,28 +130,33 @@ export default class juego3 extends Phaser.Scene {
       frameRate: 10,
       repeat: -1,
     });
+
+    this.canShoot = true;
   }
+  
 
   update(){
+
+      // Lógica para controlar cuándo el jugador puede disparar
+   if (this.input.keyboard.checkDown(this.cursors.space, 250) && this.canShoot) {
+   this.jugador.setVelocity(0, 0); // Detener al jugador temporalmente al disparar
+   this.jugador.anims.play("space", true);
+   this.fire(this.jugador);
+   this.canShoot = false; // El jugador no puede disparar hasta que la pelota se detenga o salga de la pantalla
+  }
     
-    if (this.input.keyboard.checkDown(this.cursors.space,250)){
-      this.jugador.setVelocity(0,0);
-      this.jugador.anims.play("space", true);
-      this.fire(this.jugador);
-    } 
+  // Código para el movimiento del jugador
+      const velocidadMovimiento = 5;
 
+   if (this.cursors.left.isDown) {
+   this.jugador.rotation -= 0.05;
+   } else if (this.cursors.right.isDown) {
+   this.jugador.rotation += 0.05;
+   }
 
-    if (this.cursors.left.isDown){
-      this.jugador.anims.play("left", true);
-      this.jugador.rotation--;
-      
-    }
-    else if (this.cursors.right.isDown){
-      this.jugador.anims.play("right", true);
-      this.jugador.rotation++;
+   const velocidadX = Math.cos(this.jugador.rotation) * velocidadMovimiento;
+   const velocidadY = Math.sin(this.jugador.rotation) * velocidadMovimiento;
 
-    } 
-  
   } 
 
   win() {
@@ -166,17 +171,34 @@ export default class juego3 extends Phaser.Scene {
   }
 
   fire(object){
-    let pelota = this.pelota.get(object.x+17, object.y-30);
-    if (pelota){
-      pelota.setActive(true);
-      pelota.setVisible(true);
-      pelota.setBounce(1);
-      pelota.setScale(0.1);
-      pelota.setCircle(150, -15, -25)
-      pelota.body.velocity.y = 150;
-      pelota.body.velocity.x = -150;
-      
-    }
+    // Código para disparar la pelota
+      const velocidadDisparoX = 500;
+      const velocidadDisparoY = 500;
+
+      // Calcula las componentes de velocidad horizontal y vertical en función de la rotación del jugador
+      const velocidadX = Math.cos(this.jugador.rotation) * velocidadDisparoX;
+      const velocidadY = Math.sin(this.jugador.rotation) * velocidadDisparoY;
+
+      // Crea la pelota en la posición del jugador y establece sus características
+       let pelota = this.pelota.get(object.x +10 , object.y -1);
+       if (pelota) {
+       pelota.setActive(true);
+       pelota.setVisible(true);
+       pelota.setBounce(1);
+       pelota.setScale(0.1);
+       pelota.setCircle(150, -15, -25);
+
+      // Establece las velocidades horizontal y vertical de la pelota para dispararla en la dirección del jugador
+      pelota.setVelocity(velocidadX, velocidadY);
+
+      pelota.setCollideWorldBounds(true);
+      pelota.setBounce(1, 1); // Ajusta el valor de rebote para controlar la colisión con los límites del mundo
+
+      // Cuando la pelota se detiene o sale de la pantalla, el jugador puede disparar nuevamente
+      pelota.on('animationcomplete', () => {
+      this.canShoot = true;
+      });
+  }
   }
 
   oneSecond() {

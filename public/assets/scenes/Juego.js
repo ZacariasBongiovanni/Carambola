@@ -29,10 +29,10 @@ export default class Juego extends Phaser.Scene {
 
     console.log(objectosLayer);
 
-    this.jugador = this.physics.add
+   /*  this.jugador = this.physics.add
     .sprite(235, 125, "Cañon")
     .setVelocity(0,0)
-    .setMaxVelocity(0,0)
+    .setMaxVelocity(0,0) */
     
 
     /* let spawnPoint = map.findObject("objetos", (obj) => obj.name === "pelota");
@@ -47,16 +47,22 @@ export default class Juego extends Phaser.Scene {
       .setBounce(1)
       .setCollideWorldBounds(true); */
 
+  
+    this.cannon = this.add.image(270, 150, 'cañon').setScale(0.5);
+      
+    this.pelota = this.physics.add.sprite(this.cannon.x, this.cannon.y - 0, 'ball').setScale(0.2);
       
 
-   this.pelota = this.physics.add.group({
-      defaultKey: 'ball',
-      maxSize: 2,
-    }); 
+    this.pelota.disableBody(true, true);
 
-    this.estrellas = this.physics.add.group();
+    this.angle = 0;
 
-     let spawnPoint = map.findObject("objetos", (obj) => obj.name === "salida");
+    
+ 
+
+  this.estrellas = this.physics.add.group();
+
+    let spawnPoint = map.findObject("objetos", (obj) => obj.name === "salida");
     console.log("spawn point salida ", spawnPoint);
     this.salida = this.physics.add
       .sprite(spawnPoint.x, spawnPoint.y, "door")
@@ -106,10 +112,6 @@ export default class Juego extends Phaser.Scene {
       fill: "#000000",
     });
 
-
-
-
-
     this.cursors = this.input.keyboard.createCursorKeys();
 
     this.physics.add.collider(this.pelota, plataformaLayer);
@@ -130,7 +132,7 @@ export default class Juego extends Phaser.Scene {
     );
 
     
-    this.anims.create({
+   /*  this.anims.create({
       key: "space",
       frames: this.anims.generateFrameNumbers("Cañon", { start: 1, end: 2}),
       frameRate: 20,
@@ -149,13 +151,31 @@ export default class Juego extends Phaser.Scene {
       frames: this.anims.generateFrameNumbers("Cañon", { start: 0, end:0}),
       frameRate: 10,
       repeat: -1,
-    });
+    }); */
 
-  
+    
+
+
   }
   update(){
+
+    this.input.on('pointermove', (pointer) =>
+      {
+          this.angle = Phaser.Math.Angle.BetweenPoints(this.cannon, pointer);
+          this.cannon.rotation = this.angle;
+         
+      });
+
+    this.input.on('pointerup', () =>
+      {
+          this.pelota.enableBody(true, this.cannon.x, this.cannon.y - 0, true, true);
+       
+          this.physics.velocityFromRotation(this.angle, 600, this.pelota.body.velocity);
+      });
+
+
     
-    if (this.input.keyboard.checkDown(this.cursors.space,250)){
+    /* if (this.input.keyboard.checkDown(this.cursors.space,250)){
       this.jugador.anims.play("space", true);
       this.fire(this.jugador);
     } 
@@ -171,7 +191,7 @@ export default class Juego extends Phaser.Scene {
       this.jugador.rotation++;
 
     } 
-  
+   */
   } 
 
   win() {
@@ -185,7 +205,7 @@ export default class Juego extends Phaser.Scene {
     this.scene.start("juego");
   }
 
-   fire(object){
+  fire(object){
     let pelota = this.pelota.get(object.x+17, object.y-30);
     if (pelota){
       pelota.setActive(true);
@@ -199,6 +219,7 @@ export default class Juego extends Phaser.Scene {
     }
   }
 
+  
   // oneSecond() {
   //   this.timer++;
   //   this.timerText.setText("Tiempo " + this.timer);

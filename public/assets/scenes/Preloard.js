@@ -46,7 +46,7 @@ export default class Preload extends Phaser.Scene {
     } 
 
     create(){
-        this.scene.start("juego")
+        this.scene.start("Inicio")
     }
 }
    

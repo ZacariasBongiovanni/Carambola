@@ -43,10 +43,10 @@ export default class juego extends Phaser.Scene {
       .setBounce(1)
       .setCollideWorldBounds(true); */
 
-      /* this.pelota = this.physics.add({
+       this.pelota = this.physics.add.group({
         defaultKey: 'ball',
         maxSize: 2, 
-      }); */ 
+      }); 
       
   
     this.estrellas = this.physics.add.group();
@@ -102,7 +102,7 @@ export default class juego extends Phaser.Scene {
 
     this.physics.add.collider(this.pelota, plataformaLayer);
     this.physics.add.collider(this.salida, plataformaLayer);
-    this.physics.add.overlap(this.pelota, dañoLayer, this.Daño, null, this);
+    // this.physics.add.collider(this.pelota, dañoLayer, this.Daño, null, this);
     this.physics.add.collider(this.pelota, this.salida, this.win, null, this);
     this.physics.add.collider(this.estrellas, plataformaLayer);
     this.physics.add.overlap(
@@ -151,9 +151,9 @@ export default class juego extends Phaser.Scene {
   // Código para el movimiento del jugador
       const velocidadMovimiento = 5;
 
-   if (this.cursors.left.isDown) {
+   if (this.cursors.up.isDown) {
    this.jugador.rotation -= 0.05;
-   } else if (this.cursors.right.isDown) {
+   } else if (this.cursors.down.isDown) {
    this.jugador.rotation += 0.05;
    }
 
@@ -169,9 +169,9 @@ export default class juego extends Phaser.Scene {
   juntarestrellas(pelota, estrella) {
     estrella.disableBody(true, true);
   }
-  Daño() {
+ /*  Daño() {
     this.scene.start("juego");
-  }
+  } */
 
   fire(object){
     // Código para disparar la pelota

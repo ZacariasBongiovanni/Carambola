@@ -36,8 +36,8 @@ export default class Preload extends Phaser.Scene {
         this.load.image("barra","./public/assets/images/Barra.png");
         this.load.image("teclado","./public/assets/images/teclado.png");
         this.load.image("opcion","./public/assets/images/opcion.png");
-        this.load.image("cañon","./public/assets/images/Cañon.png");
-        this.load.image("sky","./public/assets/images/sky.png");
+       
+      
 
         this.load.spritesheet("Cañon", "./public/assets/images/Cañon3.png",{
             frameWidth: 61,

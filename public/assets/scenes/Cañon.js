@@ -1,4 +1,4 @@
-export default class Cañon extends Phaser.Scene {
+/* export default class Cañon extends Phaser.Scene {
     constructor() {
       super("Cañon");
     }
@@ -39,7 +39,7 @@ export default class Cañon extends Phaser.Scene {
         .setVelocity(300, -370)
         .setMaxVelocity(-30, 50)
         .setBounce(1)
-        .setCollideWorldBounds(true); */
+        .setCollideWorldBounds(true); 
   
         this.pelota = this.physics.add.group({
           defaultKey: 'ball',
@@ -205,7 +205,8 @@ export default class Cañon extends Phaser.Scene {
       this.timer++;
       this.timerText.setText("Tiempo " + this.timer);
       if (this.timer <= 0) {
-        /* this.gameOver = true; */
+        /* this.gameOver = true; 
       }
     }
-  }
+  } 
+*/

@@ -45,7 +45,7 @@ export default class juego extends Phaser.Scene {
 
 
       this.pelota = this.physics.add.group({
-        defaultKey: 'ball',
+        defaultKey: "ball",
         maxSize: 2, 
       }); 
       

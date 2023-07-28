@@ -14,7 +14,7 @@ export default class Preload extends Phaser.Scene {
         this.load.tilemapTiledJSON("map4", "./public/tilemaps/nivel4.json");
         this.load.tilemapTiledJSON("map5", "./public/tilemaps/nivel5.json");
         this.load.image("Inicio", "./public/assets/images/Inicio.png");
-        this.load.image("Comenzar","./public/assets/images/Comenzar.png");
+        this.load.image("Comenzar", "./public/assets/images/Comenzar.png");
         this.load.image("Controles", "./public/assets/images/Controles.png");
         this.load.image("Siguiente", "./public/assets/images/Siguiente.png");
         this.load.image("Mapas", "./public/assets/images/Mapas.png");
@@ -35,10 +35,10 @@ export default class Preload extends Phaser.Scene {
         this.load.image("M5b", "./public/assets/images/M5b.png");
         this.load.image("M6b", "./public/assets/images/M6b.png");
         this.load.image("ganar", "./public/assets/images/victoria.png");
-        this.load.image("barra","./public/assets/images/Barra.png");
-        this.load.image("teclado","./public/assets/images/teclado.png");
-        this.load.image("opcion","./public/assets/images/opcion.png");
-        this.load.image("bomb","./public/assets/images/bomb.png")
+        this.load.image("barra", "./public/assets/images/Barra.png");
+        this.load.image("teclado", "./public/assets/images/teclado.png");
+        this.load.image("opcion", "./public/assets/images/opcion.png");
+        this.load.image("bomb", "./public/assets/images/bomb.png")
        
       
 

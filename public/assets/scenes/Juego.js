@@ -1,4 +1,4 @@
-export default class juego extends Phaser.Scene {
+export default class Juego extends Phaser.Scene {
   constructor() {
     super("juego");
   }

@@ -15,7 +15,7 @@ export default class Preload extends Phaser.Scene {
         this.load.tilemapTiledJSON("map5", "./public/tilemaps/nivel5.json");
         this.load.image("Inicio", "./public/assets/images/Inicio.png");
         this.load.image("Comenzar","./public/assets/images/Comenzar.png");
-        //this.load.image("Controles", "./public/assets/images/controles.png");
+        this.load.image("Controles", "./public/assets/images/controles.png");
         this.load.image("Siguiente", "./public/assets/images/Siguiente.png");
         this.load.image("Mapas", "./public/assets/images/Mapas.png");
         this.load.image("Opciones", "./public/assets/images/Opciones.png");
@@ -37,7 +37,7 @@ export default class Preload extends Phaser.Scene {
         this.load.image("ganar", "./public/assets/images/victoria.png");
         this.load.image("barra","./public/assets/images/Barra.png");
         this.load.image("teclado","./public/assets/images/teclado.png");
-        this.load.image("opcion","./public/assets/images/opcion.png");
+        //this.load.image("opcion","./public/assets/images/opcion.png");
         this.load.image("bomb","./public/assets/images/bomb.png")
        
       

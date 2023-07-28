@@ -1,6 +1,6 @@
 export default class Controles extends Phaser.Scene {
     constructor() {
-      super("Controles");
+      super("controles");
     }
    
     create() {

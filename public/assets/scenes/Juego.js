@@ -29,7 +29,7 @@ export default class juego extends Phaser.Scene {
     console.log(objectosLayer);
 
     this.jugador = this.physics.add
-    .sprite(235, 125, "Cañon")
+    .sprite(700, 150, "Cañon")
     .setVelocity(0,0)
     .setMaxVelocity(0,0)
 
@@ -43,13 +43,19 @@ export default class juego extends Phaser.Scene {
       .setBounce(1)
       .setCollideWorldBounds(true); */
 
-       this.pelota = this.physics.add.group({
+
+      this.pelota = this.physics.add.group({
         defaultKey: 'ball',
         maxSize: 2, 
       }); 
       
+     
   
-    this.estrellas = this.physics.add.group();
+    this.estrellas = this.physics.add.group({
+      immovable: true,
+      allowGravity: false,
+    });
+  
 
     let spawnPoint = map.findObject("objetos", (obj) => obj.name === "salida");
     console.log("spawn point salida ", spawnPoint);
@@ -59,6 +65,15 @@ export default class juego extends Phaser.Scene {
       .setMaxVelocity(0, 0)
       .setScale(0.1);
 
+      spawnPoint = map.findObject("objetos", (obj) => obj.name === "bomba");
+      console.log("spawn point bomba", spawnPoint);
+      this.bomba = this.physics.add
+        .sprite(spawnPoint.x, spawnPoint.y, "bomb")
+        .setScale(2.5)
+        .setVelocity(0, 400)
+        .setBounce(1)
+        .setCircle(7, 1, 1)
+        .setCollideWorldBounds(true);
 
     objectosLayer.objects.forEach((objData) => {
       const { x = 0, y = 0, name } = objData;
@@ -102,13 +117,21 @@ export default class juego extends Phaser.Scene {
 
     this.physics.add.collider(this.pelota, plataformaLayer);
     this.physics.add.collider(this.salida, plataformaLayer);
-    // this.physics.add.collider(this.pelota, dañoLayer, this.Daño, null, this);
+    this.physics.add.collider(this.bomba, plataformaLayer);
+    //this.physics.add.overlap(this.pelota, dañoLayer, this.Daño, null, this);
     this.physics.add.collider(this.pelota, this.salida, this.win, null, this);
     this.physics.add.collider(this.estrellas, plataformaLayer);
     this.physics.add.overlap(
       this.pelota,
       this.estrellas,
       this.juntarestrellas,
+      null,
+      this
+    );
+    this.physics.add.collider(
+      this.pelota,
+      this.bomba,
+      this.Daño,
       null,
       this
     );
@@ -135,6 +158,7 @@ export default class juego extends Phaser.Scene {
     });
 
     this.canShoot = true;
+    
   }
   
 
@@ -169,9 +193,9 @@ export default class juego extends Phaser.Scene {
   juntarestrellas(pelota, estrella) {
     estrella.disableBody(true, true);
   }
- /*  Daño() {
+  Daño() {
     this.scene.start("juego");
-  } */
+  } 
 
   fire(object){
     // Código para disparar la pelota

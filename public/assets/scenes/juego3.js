@@ -27,7 +27,7 @@ export default class juego3 extends Phaser.Scene {
     console.log(objectosLayer);
 
     this.jugador = this.physics.add
-    .sprite(235, 125, "Cañon")
+    .sprite(260, 250, "Cañon")
     .setVelocity(0,0)
     .setMaxVelocity(0,0)
 
@@ -46,7 +46,10 @@ export default class juego3 extends Phaser.Scene {
         maxSize: 2,
       }); 
   
-    this.estrellas = this.physics.add.group();
+    this.estrellas = this.physics.add.group({
+      immovable: true,
+      allowGravity: false,
+    });
 
     let spawnPoint = map.findObject("objetos", (obj) => obj.name === "salida");
     console.log("spawn point salida ", spawnPoint);
@@ -55,6 +58,16 @@ export default class juego3 extends Phaser.Scene {
       .setCircle(200, 170, -5)
       .setMaxVelocity(0, 0)
       .setScale(0.1);
+
+      spawnPoint = map.findObject("objetos", (obj) => obj.name === "bomba");
+      console.log("spawn point bomba", spawnPoint);
+      this.bomba = this.physics.add
+        .sprite(spawnPoint.x, spawnPoint.y, "bomb")
+        .setScale(2.5)
+        .setVelocity(0, 400)
+        .setBounce(1)
+        .setCircle(7, 1, 1)
+        .setCollideWorldBounds(true);
 
 
     objectosLayer.objects.forEach((objData) => {
@@ -99,6 +112,8 @@ export default class juego3 extends Phaser.Scene {
 
     this.physics.add.collider(this.pelota, plataformaLayer);
     this.physics.add.collider(this.salida, plataformaLayer);
+    this.physics.add.collider(this.bomba, plataformaLayer);
+
     // this.physics.add.collider(this.pelota, dañoLayer, this.Daño, null, this);
     this.physics.add.collider(this.pelota, this.salida, this.win, null, this);
     this.physics.add.collider(this.estrellas, plataformaLayer);
@@ -106,6 +121,13 @@ export default class juego3 extends Phaser.Scene {
       this.pelota,
       this.estrellas,
       this.juntarestrellas,
+      null,
+      this
+    );
+    this.physics.add.collider(
+      this.pelota,
+      this.bomba,
+      this.Daño,
       null,
       this
     );
@@ -148,9 +170,9 @@ export default class juego3 extends Phaser.Scene {
   // Código para el movimiento del jugador
       const velocidadMovimiento = 5;
 
-   if (this.cursors.left.isDown) {
+   if (this.cursors.up.isDown) {
    this.jugador.rotation -= 0.05;
-   } else if (this.cursors.right.isDown) {
+   } else if (this.cursors.down.isDown) {
    this.jugador.rotation += 0.05;
    }
 
@@ -160,7 +182,7 @@ export default class juego3 extends Phaser.Scene {
   } 
 
   win() {
-    this.scene.start("Ganar");
+    this.scene.start("juego4");
   }
 
   juntarestrellas(pelota, estrella) {
